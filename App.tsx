@@ -1,20 +1,36 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import LoginScreen from './src/screens/LoginScreen';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
+//폰트 설정
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'CookieRun-Regular' : require('./assets/font/CookieRun Regular.ttf'),
+    'CookieRun-Bold' : require('./assets/font/CookieRun Bold.ttf'),
+  });
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if(!fontsLoaded) {
+    return (
+      <AppLoading 
+        startAsync={fetchFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={console.warn}
+      />
+    )
+  }
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar style="dark" />
+      <LoginScreen />
+    </SafeAreaView>
+  );
+};
+

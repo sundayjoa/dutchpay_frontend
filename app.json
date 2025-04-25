@@ -6,26 +6,41 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
+      "package": "com.sundayjoa.dutchpayapp",
+      "jsEngine": "jsc",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sundayjoa.dutchpayapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font"
-    ]
+    "plugins": ["expo-font", "expo-secure-store",
+    [
+      "@react-native-seoul/kakao-login",
+      {
+        "kakaoAppKey": "여기에_카카오_네이티브_앱_키를_넣으세요"
+      }
+    ]],
+    "extra": {
+      "eas": {
+        "projectId": "0ab183e5-5523-402a-8477-cb1b094952c8"
+      }
+    }
   }
 }
+
